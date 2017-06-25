@@ -1,0 +1,9 @@
+{
+  "name": "moodindex-api",
+  "version": "0.0.1",
+  "description": "Moodindex backend",
+  "main": "index.js",
+  "repository": "https://github.com/zerojuan/moodindex-api.git",
+  "author": "Julius Cebreros <me@juliuscebreros.com>",
+  "license": "MIT"
+}
