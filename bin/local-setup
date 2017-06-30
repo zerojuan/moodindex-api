@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+// Create tables in your local dynamo
+const AWS = require( 'aws-sdk' );
+
+AWS.config.update({
+  endpoint: 'http://localhost:8000',
+  region: 'us-east-2'
+});
+
+const db = new AWS.DynamoDB();
+
+db.createTable( {
+  TableName: 'AccessPolicies',
+
+  AttributeDefinitions: [{
+    AttributeName: 'userType',
+    AttributeType: 'S'
+  }, {
+    AttributeName: 'id',
+    AttributeType: 'S'
+  } ],
+
+  KeySchema: [ {
+    AttributeName: 'userType',
+    KeyType: 'HASH'
+  }, {
+    AttributeName: 'id',
+    KeyType: 'RANGE'
+  } ],
+
+  ProvisionedThroughput: {
+    ReadCapacityUnits: 5,
+    WriteCapacityUnits: 5
+  }
+}, ( err, data ) => {
+  if ( err ) {
+    return console.log( err, err.stack );
+  }
+
+  console.log( 'Created table: AccessPolicies' );
+} );
