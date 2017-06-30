@@ -32,6 +32,14 @@ resource "aws_api_gateway_resource" "mood-by-id" {
   path_part = "{moodId}"
 }
 
+// TODO: <ROOT>/moods/{moodId}/reacts
+resource "aws_api_gateway_resource" "mood-reacts" {
+  depends_on = [ "aws_api_gateway_resource.mood" ]
+  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
+  parent_id = "${aws_api_gateway_resource.moods-by-id.id}"
+  path_part = "reacts"
+}
+
 // <ROOT>/user
 resource "aws_api_gateway_resource" "users" {
   rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"

@@ -1,0 +1,37 @@
+{
+  "AccessPolicies": [
+    {
+      "PutRequest": {
+        "Item": {
+          "id": "1",
+          "name": "Bob Pogo",
+          "username": "bobpogo",
+          "password": "pogoisgod",
+          "roles": [ "admin:*" ]
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": "2",
+          "name": "Cutie Pie",
+          "username": "cutiepie",
+          "password": "test1",
+          "roles": [ "user:*" ]
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": "3",
+          "name": "Frank Murphy",
+          "username": "frankmurphy",
+          "password": "test1",
+          "roles": [ "user:*" ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "AccessPolicies": [
+    {
+      "PutRequest": {
+        "Item": {
+          "userType": "user",
+          "id": "USER_READ",
+          "action": "allow",
+          "route": "GET /*"
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "userType": "user",
+          "id": "USER_READ",
+          "action": "allow",
+          "route": "GET /*"
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "userType": "admin",
+          "id": "ADMIN_READ",
+          "action": "allow",
+          "route": "GET /*"
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "userType": "admin",
+          "id": "ADMIN_CREATE",
+          "action": "allow",
+          "route": "POST /*"
+        }
+      }
+    }
+  ]
+}
