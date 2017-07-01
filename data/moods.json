@@ -1,0 +1,49 @@
+{
+  "Moods": [
+    {
+      "PutRequest": {
+        "Item": {
+          "ownerId": "1",
+          "value": 5,
+          "created": "2016-11-10T17:21:07.5272333Z"
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ownerId": "1",
+          "value": 2,
+          "created": "2016-11-11T17:21:07.5272333Z"
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ownerId": "1",
+          "value": 3,
+          "created": "2016-11-12T17:21:07.5272333Z"
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ownerId": "2",
+          "value": 3,
+          "created": "2016-11-11T17:21:07.5272333Z"
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "ownerId": "2",
+          "value": 1,
+          "created": "2016-11-12T17:21:07.5272333Z"
+        }
+      }
+    }
+  ]
+}

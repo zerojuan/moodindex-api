@@ -88,6 +88,50 @@ db
       }
     } ).promise();
   } )
+  .then( ( res ) => {
+    return db.createTable( {
+      TableName: 'Moods',
+
+      AttributeDefinitions: [{
+        AttributeName: 'ownerId',
+        AttributeType: 'S'
+      }, {
+        AttributeName: 'created',
+        AttributeType: 'S'
+      }, {
+        AttributeName: 'value',
+        AttributeType: 'N'
+      } ],
+
+      KeySchema: [ {
+        AttributeName: 'ownerId',
+        KeyType: 'HASH'
+      }, {
+        AttributeName: 'created',
+        KeyType: 'RANGE'
+      } ],
+
+      GlobalSecondaryIndexes: [ {
+        IndexName: 'valueIndex',
+        KeySchema: [ {
+          AttributeName: 'value',
+          KeyType: 'HASH'
+        } ],
+        Projection: {
+          ProjectionType: 'KEYS_ONLY'
+        },
+        ProvisionedThroughput: {
+          ReadCapacityUnits: 5,
+          WriteCapacityUnits: 5
+        }
+      } ],
+
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 5,
+        WriteCapacityUnits: 5
+      }
+    } ).promise();
+  } )
   .catch( ( err ) => {
     console.log( 'Error Happened', err );
   } );

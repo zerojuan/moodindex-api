@@ -14,18 +14,19 @@ function run() {
   console.log( 'Running DB import scripts' );
 
   // TODO: make this more dynamic
-  const permissionsJson = require( '../data/permissions.json' );
-  const users = require( '../data/users.json' );
+  const dbData = [
+    require( '../data/permissions.json' ),
+    require( '../data/users.json' ),
+    require( '../data/moods.json' )
+  ];
 
-  db.batchWrite( {
-    RequestItems: permissionsJson
-  } )
-  .promise()
-  .then( () => {
-    return db.batchWrite( {
-      RequestItems: users
-    } ).promise()
-  } );
+  return Promise.all(
+    dbData.map( ( data ) => {
+      return db.batchWrite( {
+        RequestItems: data
+      } ).promise();
+    } )
+  );
 }
 
 if ( require.main === module ) {
