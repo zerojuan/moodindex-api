@@ -56,11 +56,30 @@ db
       AttributeDefinitions: [{
         AttributeName: 'id',
         AttributeType: 'S'
+      }, {
+        AttributeName: 'username',
+        AttributeType: 'S'
       } ],
 
       KeySchema: [ {
         AttributeName: 'id',
         KeyType: 'HASH'
+      } ],
+
+      GlobalSecondaryIndexes: [ {
+        IndexName: 'usernameIndex',
+        KeySchema: [ {
+          AttributeName: 'username',
+          KeyType: 'HASH'
+        } ],
+        Projection: {
+          NonKeyAttributes: [ 'password' ],
+          ProjectionType: 'INCLUDE'
+        },
+        ProvisionedThroughput: {
+          ReadCapacityUnits: 5,
+          WriteCapacityUnits: 5
+        }
       } ],
 
       ProvisionedThroughput: {

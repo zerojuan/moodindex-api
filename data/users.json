@@ -6,7 +6,7 @@
           "id": "1",
           "name": "Bob Pogo",
           "username": "bobpogo",
-          "password": "pogoisgod",
+          "password": "$2a$06$GHWlkylmdPpU1kdWZ/tw..xtnUCrc9bgvoOA14sYVPh2l8kPsHv.y",
           "roles": [ "admin:*" ]
         }
       }
@@ -17,7 +17,7 @@
           "id": "2",
           "name": "Cutie Pie",
           "username": "cutiepie",
-          "password": "test1",
+          "password": "$2a$06$GHWlkylmdPpU1kdWZ/tw..xtnUCrc9bgvoOA14sYVPh2l8kPsHv.y",
           "roles": [ "user:*" ]
         }
       }
@@ -28,7 +28,7 @@
           "id": "3",
           "name": "Frank Murphy",
           "username": "frankmurphy",
-          "password": "test1",
+          "password": "$2a$06$GHWlkylmdPpU1kdWZ/tw..xtnUCrc9bgvoOA14sYVPh2l8kPsHv.y",
           "roles": [ "user:*" ]
         }
       }
