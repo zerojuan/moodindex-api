@@ -10,33 +10,65 @@ AWS.config.update({
 
 const db = new AWS.DynamoDB();
 
-db.createTable( {
-  TableName: 'AccessPolicies',
 
-  AttributeDefinitions: [{
-    AttributeName: 'userType',
-    AttributeType: 'S'
-  }, {
-    AttributeName: 'id',
-    AttributeType: 'S'
-  } ],
+db
+  .listTables()
+  .promise()
+  .then( ( res ) => {
+    // Delete all tables first
+    return Promise.all(
+      res.TableNames.map( ( tableName ) => {
+        return db.deleteTable( {
+          TableName: tableName
+        } ).promise()
+      } ) );
+  } )
+  .then( ( res ) => {
+    return db.createTable( {
+      TableName: 'AccessPolicies',
 
-  KeySchema: [ {
-    AttributeName: 'userType',
-    KeyType: 'HASH'
-  }, {
-    AttributeName: 'id',
-    KeyType: 'RANGE'
-  } ],
+      AttributeDefinitions: [{
+        AttributeName: 'userType',
+        AttributeType: 'S'
+      }, {
+        AttributeName: 'id',
+        AttributeType: 'S'
+      } ],
 
-  ProvisionedThroughput: {
-    ReadCapacityUnits: 5,
-    WriteCapacityUnits: 5
-  }
-}, ( err, data ) => {
-  if ( err ) {
-    return console.log( err, err.stack );
-  }
+      KeySchema: [ {
+        AttributeName: 'userType',
+        KeyType: 'HASH'
+      }, {
+        AttributeName: 'id',
+        KeyType: 'RANGE'
+      } ],
 
-  console.log( 'Created table: AccessPolicies' );
-} );
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 5,
+        WriteCapacityUnits: 5
+      }
+    } ).promise();
+  } )
+  .then( ( res ) => {
+    return db.createTable( {
+      TableName: 'Users',
+
+      AttributeDefinitions: [{
+        AttributeName: 'id',
+        AttributeType: 'S'
+      } ],
+
+      KeySchema: [ {
+        AttributeName: 'id',
+        KeyType: 'HASH'
+      } ],
+
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 5,
+        WriteCapacityUnits: 5
+      }
+    } ).promise();
+  } )
+  .catch( ( err ) => {
+    console.log( 'Error Happened', err );
+  } );

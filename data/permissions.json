@@ -5,8 +5,8 @@
         "Item": {
           "userType": "user",
           "id": "USER_READ",
-          "action": "allow",
-          "route": "GET /*"
+          "effect": "allow",
+          "route": "POST/*"
         }
       }
     },
@@ -14,9 +14,9 @@
       "PutRequest": {
         "Item": {
           "userType": "user",
-          "id": "USER_READ",
-          "action": "allow",
-          "route": "GET /*"
+          "id": "USER_CREATE",
+          "effect": "allow",
+          "route": "POST/*"
         }
       }
     },
@@ -25,8 +25,8 @@
         "Item": {
           "userType": "admin",
           "id": "ADMIN_READ",
-          "action": "allow",
-          "route": "GET /*"
+          "effect": "allow",
+          "route": "GET/*"
         }
       }
     },
@@ -35,8 +35,8 @@
         "Item": {
           "userType": "admin",
           "id": "ADMIN_CREATE",
-          "action": "allow",
-          "route": "POST /*"
+          "effect": "allow",
+          "route": "POST/*"
         }
       }
     }

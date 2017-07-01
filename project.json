@@ -4,5 +4,10 @@
   "memory": 128,
   "timeout": 5,
   "role": "arn:aws:iam::889274615573:role/moodindex-api_lambda_function",
-  "environment": {}
+  "environment": {},
+  "runtime": "nodejs6.10",
+  "hooks" : {
+    "build": "../../build-hook.sh",
+    "clean": "rm -fr lib"
+  }
 }
