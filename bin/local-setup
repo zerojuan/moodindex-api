@@ -132,6 +132,49 @@ db
       }
     } ).promise();
   } )
+  .then( ( res ) => {
+    return db.createTable( {
+      TableName: 'Reacts',
+
+      AttributeDefinitions: [{
+        AttributeName: 'id',
+        AttributeType: 'S'
+      }, {
+        AttributeName: 'ownerId',
+        AttributeType: 'S'
+      }, {
+        AttributeName: 'value',
+        AttributeType: 'N'
+      } ],
+
+      KeySchema: [ {
+        AttributeName: 'id',
+        KeyType: 'HASH'
+      }, {
+        AttributeName: 'ownerId',
+        KeyType: 'RANGE'
+      } ],
+
+      LocalSecondaryIndexes: [ {
+        IndexName: 'valueIndex',
+        KeySchema: [ {
+          AttributeName: 'id',
+          KeyType: 'HASH'
+        }, {
+          AttributeName: 'value',
+          KeyType: 'RANGE'
+        } ],
+        Projection: {
+          ProjectionType: 'KEYS_ONLY'
+        }
+      } ],
+
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 5,
+        WriteCapacityUnits: 5
+      }
+    } ).promise();
+  } )
   .catch( ( err ) => {
     console.log( 'Error Happened', err );
   } );
