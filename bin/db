@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const AWS = require( 'aws-sdk' );
+const dbBootstrap = require( '../lib/db/bootstrap' );
 
 AWS.config.update({
   endpoint: 'http://localhost:8000',
@@ -12,22 +13,9 @@ const db = new AWS.DynamoDB.DocumentClient();
 
 function run() {
   console.log( 'Running DB import scripts' );
-
-  // TODO: make this more dynamic
-  const dbData = [
-    require( '../data/permissions.json' ),
-    require( '../data/users.json' ),
-    require( '../data/moods.json' ),
-    require( '../data/reacts.json' )
-  ];
-
-  return Promise.all(
-    dbData.map( ( data ) => {
-      return db.batchWrite( {
-        RequestItems: data
-      } ).promise();
-    } )
-  );
+  dbBootstrap( db ).then( () => {
+    console.log( 'Done' );
+  } );
 }
 
 if ( require.main === module ) {
