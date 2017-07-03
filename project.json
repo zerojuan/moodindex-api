@@ -5,6 +5,7 @@
   "timeout": 5,
   "role": "arn:aws:iam::889274615573:role/moodindex-api_lambda_function",
   "environment": {},
+  "handler": "dist.default",
   "runtime": "nodejs6.10",
   "hooks" : {
     "build": "../../build-hook.sh",
