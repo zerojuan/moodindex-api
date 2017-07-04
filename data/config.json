@@ -1,0 +1,14 @@
+{
+  "MoodApiConfig": [
+    {
+      "PutRequest": {
+        "Item": {
+          "store": "dev",
+          "value": 5,
+          "created": "2016-11-10T17:21:07.5272333Z",
+          "reactRef": "1"
+        }
+      }
+    }
+  ]
+}

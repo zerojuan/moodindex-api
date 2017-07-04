@@ -15,7 +15,7 @@ resource "aws_api_gateway_integration" "create-mood-integration" {
   http_method = "POST"
   type = "AWS"
   uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.region}:${var.account_id}:function:${var.create_mood_lambda}:${var.alias}/invocations"
-  integration_http_method = "POST"
+  integration_http_method = "POST" // lambda integration can only be POST
   request_templates = {
     "application/json" = <<EOF
     {

@@ -1,7 +1,10 @@
-import Auth from 'Lib/auth';
+import Auth, { parseEnvironment } from 'Lib/auth';
 
 export default function( e, context ) {
   console.log( 'Auth Event', e );
+
+  // extract environment based on url
+  process.env.ENVIRONMENT = parseEnvironment( e.methodArn );
 
   return Auth( e )
     .then( ( result ) => {
