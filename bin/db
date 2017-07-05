@@ -3,11 +3,12 @@
 const AWS = require( 'aws-sdk' );
 const dbBootstrap = require( '../lib/db/bootstrap' );
 
-AWS.config.update({
-  endpoint: 'http://localhost:8000',
-  region: 'us-east-2'
-});
-
+if ( process.env.ENVIRONMENT === 'local' ) {
+  AWS.config.update({
+    endpoint: 'http://localhost:8000',
+    region: 'us-east-2'
+  });
+}
 
 const db = new AWS.DynamoDB.DocumentClient();
 

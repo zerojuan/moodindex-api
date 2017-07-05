@@ -3,10 +3,9 @@
   "description": "Moodindex backend",
   "memory": 512,
   "timeout": 5,
-  "role": "arn:aws:iam::748453496130:role/moodindex-api_lambda_function",
-  "defaultEnvironment": "dev",
+  "role": "arn:aws:iam::132973586483:role/moodindex-api_lambda_function",
   "environment": {
-    "JWT_SECRET": "supersecretoftheuniverse"
+    "JWT_SECRET": "supersecretoftheuniverse2"
   },
   "handler": "dist.default",
   "runtime": "nodejs6.10",

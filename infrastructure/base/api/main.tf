@@ -1,7 +1,12 @@
 
 resource "aws_api_gateway_rest_api" "moodindex-api" {
-  name = "moodindex-${var.environment_name}"
+  name = "moodindex"
   description = "Mood Index ${var.environment_name} API"
+}
+
+resource "aws_api_gateway_deployment" "moodindex-api-deployment" {
+  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
+  stage_name  = "v1"
 }
 
 resource "aws_iam_role" "lambda" {

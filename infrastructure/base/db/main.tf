@@ -1,6 +1,6 @@
 // Access Policies
 resource "aws_dynamodb_table" "access-policies-table" {
-  name = "${var.environment_name}AccessPolicies"
+  name = "AccessPolicies"
   hash_key = "userType"
   range_key = "id"
   read_capacity = "10"
@@ -15,13 +15,13 @@ resource "aws_dynamodb_table" "access-policies-table" {
   }
 
   tags {
-    ENVIRONMENT = "${var.environment_name}"
+    ENVIRONMENT = "moodindex-api"
   }
 }
 
 // Users Table
 resource "aws_dynamodb_table" "users-table" {
-  name = "${var.environment_name}Users"
+  name = "Users"
   hash_key = "id"
   read_capacity = "10"
   write_capacity = "10"
@@ -44,13 +44,13 @@ resource "aws_dynamodb_table" "users-table" {
   }
 
   tags {
-    ENVIRONMENT = "${var.environment_name}"
+    ENVIRONMENT = "moodindex-api"
   }
 }
 
 // Mood Table
 resource "aws_dynamodb_table" "moods-table" {
-  name = "${var.environment_name}Moods"
+  name = "Moods"
   hash_key = "ownerId"
   range_key = "created"
   read_capacity = "10"
@@ -77,13 +77,13 @@ resource "aws_dynamodb_table" "moods-table" {
   }
 
   tags {
-    ENVIRONMENT = "${var.environment_name}"
+    ENVIRONMENT = "moodindex-api"
   }
 }
 
 // Mood Reacts Table
 resource "aws_dynamodb_table" "reacts-table" {
-  name = "${var.environment_name}Reacts"
+  name = "Reacts"
   hash_key = "id"
   range_key = "ownerId"
   read_capacity = "10"
@@ -108,6 +108,6 @@ resource "aws_dynamodb_table" "reacts-table" {
   }
 
   tags {
-    ENVIRONMENT = "${var.environment_name}"
+    ENVIRONMENT = "moodindex-api"
   }
 }

@@ -1,6 +1,3 @@
-// variable coming from apex
-variable "apex_environment" {}
-
 variable "account_id" {
   default = "748453496130"
 }
@@ -11,5 +8,5 @@ variable "region" {
 }
 
 variable "environment" {
-  default = "dev"
+  default = "prod"
 }
