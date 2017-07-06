@@ -11,7 +11,7 @@ variable "request_parameters" {
 }
 
 variable "alias" {
-  default = "$LATEST"
+  default = "current"
 }
 
 variable "list_mood_lambda" {

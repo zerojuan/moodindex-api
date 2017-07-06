@@ -1,3 +1,5 @@
+variable "apex_environment" {}
+
 variable "account_id" {
   default = "748453496130"
 }

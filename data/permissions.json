@@ -5,7 +5,7 @@
         "Item": {
           "userType": "user",
           "id": "USER_READ",
-          "effect": "allow",
+          "effect": "Allow",
           "route": "POST/*"
         }
       }
@@ -15,7 +15,7 @@
         "Item": {
           "userType": "user",
           "id": "USER_CREATE",
-          "effect": "allow",
+          "effect": "Allow",
           "route": "POST/*"
         }
       }
@@ -25,7 +25,7 @@
         "Item": {
           "userType": "admin",
           "id": "ADMIN_READ",
-          "effect": "allow",
+          "effect": "Allow",
           "route": "GET/*"
         }
       }
@@ -35,7 +35,7 @@
         "Item": {
           "userType": "admin",
           "id": "ADMIN_CREATE",
-          "effect": "allow",
+          "effect": "Allow",
           "route": "POST/*"
         }
       }

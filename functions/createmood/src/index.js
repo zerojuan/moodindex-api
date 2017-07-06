@@ -1,9 +1,9 @@
-import MoodIndex from 'Lib/mood';
+import MoodCreate from 'Lib/mood/create';
 
 export default function( e, context ) {
   console.log( 'MoodIndex Event', e );
 
-  return MoodIndex( e )
+  return MoodCreate( e )
     .then( ( result ) => {
       return context.succeed( result );
     } )

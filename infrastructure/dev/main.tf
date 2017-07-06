@@ -13,3 +13,7 @@ module "api-gateway" {
   region = "${var.region}"
   account_id = "${var.account_id}"
 }
+
+output "api_url" {
+  value = "${module.api-gateway.rest_api_url}"
+}

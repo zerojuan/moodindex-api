@@ -8,6 +8,6 @@ export default function( e, context ) {
       return context.succeed( result );
     } )
     .catch( ( err ) => {
-      return context.fail( err );
+      return context.fail( JSON.stringify( err ) );
     } );
 }

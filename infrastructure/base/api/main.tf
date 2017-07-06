@@ -5,8 +5,16 @@ resource "aws_api_gateway_rest_api" "moodindex-api" {
 }
 
 resource "aws_api_gateway_deployment" "moodindex-api-deployment" {
+  depends_on = [
+    "aws_api_gateway_method.list-moods",
+    "aws_api_gateway_method.create-mood"
+  ]
   rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
   stage_name  = "v1"
+}
+
+output "rest_api_url" {
+  value = "${aws_api_gateway_deployment.moodindex-api-deployment.invoke_url}"
 }
 
 resource "aws_iam_role" "lambda" {
@@ -27,6 +35,11 @@ resource "aws_iam_role" "lambda" {
   ]
 }
 EOF
+}
+
+resource "aws_iam_role_policy_attachment" "attach-lambda-auth-policy" {
+    role       = "${aws_iam_role.lambda.name}"
+    policy_arn = "arn:aws:iam::${var.account_id}:policy/LambdaAuthorizer"
 }
 
 resource "aws_api_gateway_authorizer" "moodindex-auth" {
