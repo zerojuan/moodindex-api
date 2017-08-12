@@ -9,6 +9,13 @@
   "scripts": {
     "test": "ENVIRONMENT=local JWT_SECRET=secret jest . --watch"
   },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "expect"
+    ]
+  },
   "dependencies": {
     "aws-arn-parser": "^1.0.0",
     "aws-sdk": "^2.79.0",
@@ -31,6 +38,7 @@
     "babel-runtime": "^6.18.0",
     "jest": "^20.0.4",
     "json-loader": "^0.5.4",
+    "standard": "^10.0.2",
     "webpack": "^1.12.13"
   }
 }
