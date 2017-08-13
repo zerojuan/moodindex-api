@@ -22,10 +22,13 @@ jobs:
       - run:
           name: Test
           command: npm run test-ci
+          environment:
+            TEST_REPORT_PATH: junit
+            TEST_REPORT_FILENAME: test-results.xml
       - store_artifacts:
-          path: test-report.xml
+          path: ~/junit
       - store_artifacts:
           path: coverage
           prefix: coverage
       - store_test_results:
-          path: test-report.xml
+          path: ~/junit
