@@ -204,12 +204,13 @@ aws-arn-parser@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/aws-arn-parser/-/aws-arn-parser-1.0.0.tgz#647be030c84f1f8dff9c96d9d8fa6034869e84a2"
 
-aws-sdk@^2.79.0:
-  version "2.79.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.79.0.tgz#849e0918ee36d9fc0c8aa81c3b8dcad88e1fa99b"
+aws-sdk@^2.97.0:
+  version "2.97.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.97.0.tgz#5b16df1d638c190f0f460bceefaa047b8a9d220e"
   dependencies:
     buffer "4.9.1"
     crypto-browserify "1.0.9"
+    events "^1.1.1"
     jmespath "0.15.0"
     querystring "0.2.0"
     sax "1.2.1"
@@ -1648,7 +1649,7 @@ event-emitter@~0.3.5:
     d "1"
     es5-ext "~0.10.14"
 
-events@^1.0.0:
+events@^1.0.0, events@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
 

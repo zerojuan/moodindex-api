@@ -7,18 +7,25 @@
   "author": "Julius Cebreros <me@juliuscebreros.com>",
   "license": "MIT",
   "scripts": {
+    "create-db": "ENVIRONMENT=local ./bin/local-setup",
+    "populate-db": "ENVIRONMENT=local ./bin/db", 
+    "test-debug": "ENVIRONMENT=local JWT_SECRET=secret node --inspect-brk ./node_modules/.bin/jest . --runInBand",
     "test": "ENVIRONMENT=local JWT_SECRET=secret jest . --watch"
   },
   "standard": {
     "globals": [
       "describe",
       "it",
-      "expect"
+      "expect",
+      "beforeEach",
+      "before",
+      "afterEach",
+      "after"
     ]
   },
   "dependencies": {
     "aws-arn-parser": "^1.0.0",
-    "aws-sdk": "^2.79.0",
+    "aws-sdk": "^2.97.0",
     "babel-polyfill": "^6.23.0",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^7.4.1",

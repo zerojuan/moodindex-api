@@ -1,4 +1,4 @@
-import Auth, { parseEnvironment } from 'Lib/auth'
+import Auth from 'Lib/auth'
 
 export default function (e, context) {
   console.log('Auth Event', e)

@@ -4,22 +4,31 @@ exports[`Authenticator Authentication - should return a policy response 1`] = `
 Object {
   "context": Object {
     "message": "Authenticate Success",
+    "userId": "1",
   },
   "policyDocument": Object {
     "Statement": Array [
       Object {
-        "Action": "execute-api:Invoke",
-        "Effect": "allow",
-        "Resource": "arn:aws:execute-api:<regionId>:<accountId>:<apiId>/<stage>/POST/*",
+        "Action": Array [
+          "execute-api:Invoke",
+        ],
+        "Effect": "Allow",
+        "Resource": Array [
+          "arn:aws:execute-api:<regionId>:<accountId>:<apiId>/<stage>/POST/*",
+        ],
       },
       Object {
-        "Action": "execute-api:Invoke",
-        "Effect": "allow",
-        "Resource": "arn:aws:execute-api:<regionId>:<accountId>:<apiId>/<stage>/GET/*",
+        "Action": Array [
+          "execute-api:Invoke",
+        ],
+        "Effect": "Allow",
+        "Resource": Array [
+          "arn:aws:execute-api:<regionId>:<accountId>:<apiId>/<stage>/GET/*",
+        ],
       },
     ],
     "Version": "2012-10-17",
   },
-  "principalId": "1",
+  "principalId": "user",
 }
 `;
