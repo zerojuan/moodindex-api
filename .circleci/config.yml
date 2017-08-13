@@ -24,7 +24,7 @@ jobs:
           name: Test
           command: npm run test-ci
           environment:
-            TEST_REPORT_PATH: junit
+            TEST_REPORT_PATH: ~/junit
             TEST_REPORT_FILENAME: test-results.xml
       - store_artifacts:
           path: ~/junit
