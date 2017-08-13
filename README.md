@@ -1,5 +1,5 @@
 # MoodIndex Api
-
+[![CircleCI](https://circleci.com/gh/zerojuan/moodindex-api.svg?style=svg)](https://circleci.com/gh/zerojuan/moodindex-api)
 Record your mood for the day.
 
 ## Note:
