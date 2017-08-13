@@ -11,7 +11,7 @@
     "create-db": "ENVIRONMENT=local ./bin/local-setup",
     "populate-db": "ENVIRONMENT=local ./bin/db",
     "test-debug": "ENVIRONMENT=local JWT_SECRET=secret node --inspect-brk ./node_modules/.bin/jest . --runInBand",
-    "test": "ENVIRONMENT=local JWT_SECRET=secret jest . --watch"
+    "test": "ENVIRONMENT=local JWT_SECRET=secret jest ."
   },
   "standard": {
     "globals": [
