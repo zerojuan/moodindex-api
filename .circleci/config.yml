@@ -18,7 +18,7 @@ jobs:
           command: npm run create-db
       - run:
           name: Setup db
-          command: npm run setup-db
+          command: npm run populate-db
       - run:
           name: Test
           command: npm test
