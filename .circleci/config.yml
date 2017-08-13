@@ -3,21 +3,9 @@ jobs:
   build:
     docker: 
       - image: circleci/node:8.0.0
-      - image: circleci/openjdk:8-jdk
-        environment:
-          _JAVA_OPTIONS: "-Xms512m -Xmx1024m"
+      - image: deangiberson/aws-dynamodb-local:2017-03-08
     steps:
       - checkout
-      - run:
-          name: Get dynamodb
-          command: curl -k -L -o dynamodb-local.tgz http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz
-      - run:
-          name: Unpack dynamodb
-          command: tar -xzf dynamodb-local.tgz
-      - run:
-          name: Start dynamodb
-          command: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
-          background: true
       - run:
           name: Install dependencies
           command: npm install
