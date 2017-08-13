@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  build:
+    docker: 
+      - image: circleci/node:8.0.0
+      - image: circleci/java:openjdk7
+        environment:
+          _JAVA_OPTIONS: "-Xms512m -Xmx1024m"
+    steps:
+      - checkout
+      - run:
+          name: Get dynamodb
+          command: curl -k -L -o dynamodb-local.tgz http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz
+      - run:
+          name: Unpack dynamodb
+          command: tar -xzf dynamodb-local.tgz
+      - run:
+          name: Start dynamodb
+          command: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+          background: true
+      - run:
+          name: Install yarn
+          command: npm install -g yarn
+      - run:
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          key: dependency-cache-${{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Create db
+          command: npm run create-db
+      - run:
+          name: Setup db
+          command: npm run setup-db
+      - run:
+          name: Test
+          command: npm test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_test_results:
+          path: test-results.xml
