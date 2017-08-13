@@ -19,9 +19,6 @@ jobs:
           command: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
           background: true
       - run:
-          name: Install yarn
-          command: npm install -g yarn
-      - run:
           name: Install dependencies
           command: npm install
       - save_cache:
