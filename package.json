@@ -12,7 +12,10 @@
     "populate-db": "ENVIRONMENT=local ./bin/db",
     "test-debug": "ENVIRONMENT=local JWT_SECRET=secret node --inspect-brk ./node_modules/.bin/jest . --runInBand",
     "test": "ENVIRONMENT=local JWT_SECRET=secret ./node_modules/.bin/jest . --watch",
-    "test-ci": "ENVIRONMENT=local JWT_SECRET=secret ./node_modules/.bin/jest . --coverage --json --outputFile=test-results.json"
+    "test-ci": "ENVIRONMENT=local JWT_SECRET=secret ./node_modules/.bin/jest . --coverage --ci --testResultsProcessor=./node_modules/jest-junit-reporter"
+  },
+  "jest": {
+    "testResultsProcessor": "./node_modules/jest-junit-reporter"
   },
   "standard": {
     "globals": [
@@ -46,6 +49,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "^6.18.0",
     "jest": "^20.0.4",
+    "jest-junit-reporter": "^1.1.0",
     "json-loader": "^0.5.4",
     "standard": "^10.0.2",
     "webpack": "^1.12.13"
