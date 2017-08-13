@@ -3,5 +3,4 @@ node_modules
 dist
 .vscode
 coverage
-test-results.json
-test-report.xml
+junit
