@@ -14,18 +14,15 @@
     "test": "ENVIRONMENT=local JWT_SECRET=secret ./node_modules/.bin/jest . --watch",
     "test-ci": "ENVIRONMENT=local JWT_SECRET=secret ./node_modules/.bin/jest . --coverage --ci --testResultsProcessor=./node_modules/jest-junit-reporter"
   },
-  "jest": {
-    "testResultsProcessor": "./node_modules/jest-junit-reporter"
-  },
   "standard": {
     "globals": [
       "describe",
       "it",
       "expect",
       "beforeEach",
-      "before",
+      "beforeAll",
       "afterEach",
-      "after"
+      "afterAll"
     ]
   },
   "dependencies": {
