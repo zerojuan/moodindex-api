@@ -38,11 +38,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install Apex
-        command: curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
+          name: Install Apex
+          command: curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
       - run:
-        name: Apex
-        command: apex --help
+          name: Apex
+          command: apex --help
 workflows:
   version: 2
   build_and_test:
