@@ -42,10 +42,10 @@ jobs:
           command: curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
       - run:
           name: Apex plan
-          command: apex infra --env dev plan
+          command: apex infra plan
       - run:
           name: Apex apply
-          command: apex infra --env dev apply
+          command: apex infra apply
 workflows:
   version: 2
   # build_and_test:
