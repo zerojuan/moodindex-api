@@ -41,6 +41,9 @@ jobs:
           name: Install Apex
           command: curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
       - run:
+          name: Apex init
+          command: apex infra init
+      - run:
           name: Apex get
           command: apex infra get
       - run:
