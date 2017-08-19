@@ -50,4 +50,4 @@ workflows:
       - build
   deploy:
     jobs:
-      - deploy
+      - deploy_dev
