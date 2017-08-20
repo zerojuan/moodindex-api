@@ -54,9 +54,12 @@ jobs:
           command: apex infra apply
 workflows:
   version: 2
-  # build_and_test:
-  #   jobs:
-  #     - build
-  deploy:
+  build_and_test_and_deploy:
     jobs:
+      - build
       - deploy_dev
+        requires:
+          -build
+#   deploy:
+#     jobs:
+#       - deploy_dev
