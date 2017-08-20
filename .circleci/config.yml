@@ -48,7 +48,7 @@ jobs:
           command: npm install
       - run:
           name: Apex deploy
-          command: pwd && apex deploy
+          command: apex deploy
       - run:
           name: Apex init
           command: apex infra init
