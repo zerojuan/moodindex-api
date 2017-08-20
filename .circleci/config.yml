@@ -46,6 +46,10 @@ jobs:
       - run:
           name: Install npm
           command: npm install
+      - save_cache:
+          key: dependency-cache-${{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run:
           name: Apex deploy
           command: apex deploy -r ap-northeast-1
@@ -63,18 +67,18 @@ jobs:
           command: apex infra apply
 workflows:
   version: 2
-  # test:
-  #   jobs:
-  #     - build
-  # build_and_deploy:
-  #   jobs:
-  #     - build
-  #     - deploy_dev:
-  #         requires:
-  #           - build
-  #         filters:
-  #           branches:
-  #             only: master
-  deploy:
+  test:
     jobs:
-      - deploy_dev
+      - build
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy_dev:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+  # deploy:
+  #   jobs:
+  #     - deploy_dev
