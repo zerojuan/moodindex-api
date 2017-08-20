@@ -34,12 +34,19 @@ jobs:
           path: ./junit
   deploy_dev:
     docker:
+      - image: circleci/node:8.0.0
       - image: hashicorp/terraform:light
     steps:
       - checkout
       - run:
           name: Install Apex
           command: curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
+      - run:
+          name: Install npm
+          command: npm install
+      - run:
+          name: Apex deploy
+          command: apex deploy
       - run:
           name: Apex init
           command: apex infra init
@@ -57,15 +64,15 @@ workflows:
   test:
     jobs:
       - build
-  build_and_deploy:
+  # build_and_deploy:
+  #   jobs:
+  #     - build
+  #     - deploy_dev:
+  #         requires:
+  #           - build
+  #         filters:
+  #           branches:
+  #             only: master
+  deploy:
     jobs:
-      - build
-      - deploy_dev:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
-#   deploy:
-#     jobs:
-#       - deploy_dev
+      - deploy_dev
