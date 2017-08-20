@@ -59,7 +59,7 @@ workflows:
       - build
       - deploy_dev
         requires:
-          -build
+          - build
 #   deploy:
 #     jobs:
 #       - deploy_dev
