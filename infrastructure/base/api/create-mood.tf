@@ -27,7 +27,7 @@ EOF
 }
 
 resource "aws_lambda_permission" "apigw_lambda_post_mood" {
-  statement_id  = "AllowExecutionFromAPIGateway"
+  statement_id  = "AllowExecutionFromAPIGateway-post-mood"
   action        = "lambda:InvokeFunction"
   function_name = "arn:aws:lambda:${var.region}:${var.account_id}:function:${var.create_mood_lambda}:${var.alias}"
   principal     = "apigateway.amazonaws.com"

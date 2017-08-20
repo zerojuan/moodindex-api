@@ -35,7 +35,7 @@ EOF
 }
 
 resource "aws_lambda_permission" "apigw_lambda" {
-  statement_id  = "AllowExecutionFromAPIGateway"
+  statement_id  = "AllowExecutionFromAPIGateway-listmood"
   action        = "lambda:InvokeFunction"
   function_name = "arn:aws:lambda:${var.region}:${var.account_id}:function:${var.list_mood_lambda}:${var.alias}"
   principal     = "apigateway.amazonaws.com"
