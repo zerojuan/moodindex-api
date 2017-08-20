@@ -1,7 +1,16 @@
+terraform {
+  backend "s3" {
+    bucket = "tfstate-juliusc"
+    region = "us-west-2"
+    key = "moodindex-state/terraform.tfstate"
+  }
+}
+
 provider "aws" {
   region = "${var.region}"
 }
 
+# TODO: use S3 to store state
 module "db-tables" {
   source = "../base/db"
   environment_name = "${var.apex_environment}"
