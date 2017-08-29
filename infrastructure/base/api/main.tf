@@ -7,7 +7,8 @@ resource "aws_api_gateway_rest_api" "moodindex-api" {
 resource "aws_api_gateway_deployment" "moodindex-api-deployment" {
   depends_on = [
     "aws_api_gateway_method.list-moods",
-    "aws_api_gateway_method.create-mood"
+    "aws_api_gateway_method.create-mood",
+    "aws_api_gateway_method.react-mood"
   ]
   rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
   stage_name  = "v1"
@@ -65,7 +66,7 @@ resource "aws_api_gateway_resource" "mood-by-id" {
 }
 
 // TODO: <ROOT>/moods/{moodId}/reacts
-resource "aws_api_gateway_resource" "mood-reacts" {
+resource "aws_api_gateway_resource" "MoodReacts" {
   depends_on = [ "aws_api_gateway_resource.moods" ]
   rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
   parent_id = "${aws_api_gateway_resource.mood-by-id.id}"
