@@ -11,7 +11,7 @@ resource "aws_api_gateway_method" "ReactMood" {
 resource "aws_api_gateway_integration" "ReactMood-integration" {
   rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
   resource_id = "${aws_api_gateway_resource.MoodReacts.id}"
-  http_method = "GET"
+  http_method = "POST"
   type = "AWS"
   uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.region}:${var.account_id}:function:${var.react_lambda}:${var.alias}/invocations"
   integration_http_method = "POST" // lambda integration can only be POST
