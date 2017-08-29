@@ -25,33 +25,14 @@ EOF
   }
 }
 
-resource "aws_lambda_permission" "apigw_lambda" {
+resource "aws_lambda_permission" "apigw_lambda_reactmood" {
   statement_id  = "AllowExecutionFromAPIGateway-reactmood"
   action        = "lambda:InvokeFunction"
   function_name = "arn:aws:lambda:${var.region}:${var.account_id}:function:${var.react_lambda}:${var.alias}"
   principal     = "apigateway.amazonaws.com"
 
   # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
-  source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.moodindex-api.id}/*/${aws_api_gateway_method.list-moods.http_method}/*"
-}
-
-
-resource "aws_api_gateway_integration_response" "ReactMood-integration-response200" {
-  depends_on = [
-    "aws_api_gateway_integration.ReactMood-integration",
-    "aws_api_gateway_method_response.ReactMood-200-response" ]
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
-  resource_id = "${aws_api_gateway_resource.moods.id}"
-  http_method = "${aws_api_gateway_integration.ReactMood-integration.http_method}"
-  status_code = "${aws_api_gateway_method_response.ReactMood-200-response.status_code}"
-  response_parameters = {
-    "method.response.header.Access-Control-Allow-Origin" = "'*'"
-  }
-  response_templates = {
-    "application/json" = <<EOF
-    "$input.json('$')"
-EOF
-  }
+  source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.moodindex-api.id}/*/${aws_api_gateway_method.ReactMood.http_method}/*"
 }
 
 resource "aws_api_gateway_method_response" "ReactMood-200-response" {
