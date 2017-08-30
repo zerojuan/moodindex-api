@@ -6,9 +6,9 @@ resource "aws_api_gateway_rest_api" "MoodIndexAPI" {
 
 resource "aws_api_gateway_deployment" "MoodIndexDeployment" {
   depends_on = [
-    "aws_api_gateway_method.list-moods",
-    "aws_api_gateway_method.create-mood",
-    "aws_api_gateway_method.ReactMood"
+    "aws_api_gateway_method.ListMoods",
+    "aws_api_gateway_method.CreateMood",
+    "aws_api_gateway_method.CreateReact"
   ]
   rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   stage_name  = "v1"

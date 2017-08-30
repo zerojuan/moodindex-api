@@ -4,7 +4,7 @@ resource "aws_api_gateway_method" "CreateReact" {
   resource_id = "${aws_api_gateway_resource.MoodReacts.id}" 
   http_method = "POST"
   authorization = "CUSTOM"
-  authorizer_id = "${aws_api_gateway_authorizer.moodindex-auth.id}"
+  authorizer_id = "${aws_api_gateway_authorizer.MoodIndexAuth.id}"
   request_parameters = "${var.request_parameters}"
 }
 
@@ -32,7 +32,7 @@ resource "aws_lambda_permission" "APIGW_LAMBDA_CREATEREACT" {
   principal     = "apigateway.amazonaws.com"
 
   # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
-  source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.moodindex-api.id}/*/${aws_api_gateway_method.ReactMood.http_method}/*"
+  source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.MoodIndexAPI.id}/*/${aws_api_gateway_method.CreateReact.http_method}/*"
 }
 
 resource "aws_api_gateway_method_response" "CreateReactMethodResponse200" {

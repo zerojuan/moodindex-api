@@ -41,7 +41,7 @@ resource "aws_lambda_permission" "APIGW_LAMBDA_LISTMOODS" {
   principal     = "apigateway.amazonaws.com"
 
   # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
-  source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.moodindex-api.id}/*/${aws_api_gateway_method.ListMoods.http_method}/*"
+  source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.MoodIndexAPI.id}/*/${aws_api_gateway_method.ListMoods.http_method}/*"
 }
 
 
