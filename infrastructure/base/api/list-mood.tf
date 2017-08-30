@@ -1,7 +1,7 @@
 // GET <BASE>/moods
-resource "aws_api_gateway_method" "list-moods" {
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
-  resource_id = "${aws_api_gateway_resource.moods.id}"
+resource "aws_api_gateway_method" "ListMoods" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
+  resource_id = "${aws_api_gateway_resource.Moods.id}"
   http_method = "GET"
   authorization = "NONE"
   request_parameters = {
@@ -12,9 +12,9 @@ resource "aws_api_gateway_method" "list-moods" {
   }
 }
 
-resource "aws_api_gateway_integration" "list-moods-integration" {
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
-  resource_id = "${aws_api_gateway_resource.moods.id}"
+resource "aws_api_gateway_integration" "ListMoodsIntegration" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
+  resource_id = "${aws_api_gateway_resource.Moods.id}"
   http_method = "GET"
   type = "AWS"
   uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.region}:${var.account_id}:function:${var.list_mood_lambda}:${var.alias}/invocations"
@@ -34,25 +34,25 @@ EOF
   }
 }
 
-resource "aws_lambda_permission" "apigw_lambda" {
+resource "aws_lambda_permission" "APIGW_LAMBDA_LISTMOODS" {
   statement_id  = "AllowExecutionFromAPIGateway-listmood"
   action        = "lambda:InvokeFunction"
   function_name = "arn:aws:lambda:${var.region}:${var.account_id}:function:${var.list_mood_lambda}:${var.alias}"
   principal     = "apigateway.amazonaws.com"
 
   # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
-  source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.moodindex-api.id}/*/${aws_api_gateway_method.list-moods.http_method}/*"
+  source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.moodindex-api.id}/*/${aws_api_gateway_method.ListMoods.http_method}/*"
 }
 
 
-resource "aws_api_gateway_integration_response" "list-moods-integration-response200" {
+resource "aws_api_gateway_integration_response" "ListMoodsIntegrationResponse200" {
   depends_on = [
-    "aws_api_gateway_integration.list-moods-integration",
-    "aws_api_gateway_method_response.list-moods-200-response" ]
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
-  resource_id = "${aws_api_gateway_resource.moods.id}"
-  http_method = "${aws_api_gateway_integration.list-moods-integration.http_method}"
-  status_code = "${aws_api_gateway_method_response.list-moods-200-response.status_code}"
+    "aws_api_gateway_integration.ListMoodsIntegration",
+    "aws_api_gateway_method_response.ListMoodsMethodResponse200" ]
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
+  resource_id = "${aws_api_gateway_resource.Moods.id}"
+  http_method = "${aws_api_gateway_integration.ListMoodsIntegration.http_method}"
+  status_code = "${aws_api_gateway_method_response.ListMoodsMethodResponse200.status_code}"
   response_parameters = {
     "method.response.header.Access-Control-Allow-Origin" = "'*'"
   }
@@ -63,22 +63,22 @@ EOF
   }
 }
 
-resource "aws_api_gateway_method_response" "list-moods-200-response" {
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
-  resource_id = "${aws_api_gateway_resource.moods.id}"
-  http_method = "${aws_api_gateway_method.list-moods.http_method}"
+resource "aws_api_gateway_method_response" "ListMoodsMethodResponse200" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
+  resource_id = "${aws_api_gateway_resource.Moods.id}"
+  http_method = "${aws_api_gateway_method.ListMoods.http_method}"
   status_code = "200"
   response_parameters = { "method.response.header.Access-Control-Allow-Origin" = true }
 }
 
-resource "aws_api_gateway_integration_response" "list-moods-integration-response400" {
+resource "aws_api_gateway_integration_response" "ListMoodsIntegrationResponse400" {
   depends_on = [
-    "aws_api_gateway_integration.list-moods-integration",
-    "aws_api_gateway_method_response.list-moods-400-response" ]
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
-  resource_id = "${aws_api_gateway_resource.moods.id}"
-  http_method = "${aws_api_gateway_integration.list-moods-integration.http_method}"
-  status_code = "${aws_api_gateway_method_response.list-moods-400-response.status_code}"
+    "aws_api_gateway_integration.ListMoodsIntegration",
+    "aws_api_gateway_method_response.ListMoodsMethodResponse400" ]
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
+  resource_id = "${aws_api_gateway_resource.Moods.id}"
+  http_method = "${aws_api_gateway_integration.ListMoodsIntegration.http_method}"
+  status_code = "${aws_api_gateway_method_response.ListMoodsMethodResponse400.status_code}"
   response_parameters = { "method.response.header.Access-Control-Allow-Origin" = "'*'" }
   selection_pattern = ".*\"NotFound\".*"
 
@@ -87,10 +87,10 @@ resource "aws_api_gateway_integration_response" "list-moods-integration-response
   }
 }
 
-resource "aws_api_gateway_method_response" "list-moods-400-response" {
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
-  resource_id = "${aws_api_gateway_resource.moods.id}"
-  http_method = "${aws_api_gateway_method.list-moods.http_method}"
+resource "aws_api_gateway_method_response" "ListMoodsMethodResponse400" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
+  resource_id = "${aws_api_gateway_resource.Moods.id}"
+  http_method = "${aws_api_gateway_method.ListMoods.http_method}"
   status_code = "400"
   response_models = { "application/json" = "Error" }
   response_parameters = { "method.response.header.Access-Control-Allow-Origin" = true }

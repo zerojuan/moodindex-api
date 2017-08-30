@@ -1,6 +1,6 @@
 // GET <BASE>/moods
-resource "aws_api_gateway_method" "ReactMood" {
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
+resource "aws_api_gateway_method" "CreateReact" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   resource_id = "${aws_api_gateway_resource.MoodReacts.id}" 
   http_method = "POST"
   authorization = "CUSTOM"
@@ -8,8 +8,8 @@ resource "aws_api_gateway_method" "ReactMood" {
   request_parameters = "${var.request_parameters}"
 }
 
-resource "aws_api_gateway_integration" "ReactMood-integration" {
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
+resource "aws_api_gateway_integration" "CreateReactIntegration" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   resource_id = "${aws_api_gateway_resource.MoodReacts.id}"
   http_method = "POST"
   type = "AWS"
@@ -25,8 +25,8 @@ EOF
   }
 }
 
-resource "aws_lambda_permission" "apigw_lambda_reactmood" {
-  statement_id  = "AllowExecutionFromAPIGateway-reactmood"
+resource "aws_lambda_permission" "APIGW_LAMBDA_CREATEREACT" {
+  statement_id  = "AllowExecutionFromAPIGateway-createreact"
   action        = "lambda:InvokeFunction"
   function_name = "arn:aws:lambda:${var.region}:${var.account_id}:function:${var.react_lambda}:${var.alias}"
   principal     = "apigateway.amazonaws.com"
@@ -35,23 +35,23 @@ resource "aws_lambda_permission" "apigw_lambda_reactmood" {
   source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.moodindex-api.id}/*/${aws_api_gateway_method.ReactMood.http_method}/*"
 }
 
-resource "aws_api_gateway_method_response" "ReactMood-200-response" {
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
+resource "aws_api_gateway_method_response" "CreateReactMethodResponse200" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   resource_id = "${aws_api_gateway_resource.MoodReacts.id}"
-  http_method = "${aws_api_gateway_method.ReactMood.http_method}"
+  http_method = "${aws_api_gateway_method.CreateReact.http_method}"
   status_code = "200"
   response_parameters = { "method.response.header.Access-Control-Allow-Origin" = true }
 }
 
-resource "aws_api_gateway_integration_response" "ReactMood-integration-response200" {
+resource "aws_api_gateway_integration_response" "CreateReactIntegrationResponse200" {
   depends_on = [
-    "aws_api_gateway_integration.ReactMood-integration",
-    "aws_api_gateway_method_response.ReactMood-200-response"
+    "aws_api_gateway_integration.CreateReactIntegration",
+    "aws_api_gateway_method_response.CreateReactMethodResponse200"
    ]
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   resource_id = "${aws_api_gateway_resource.MoodReacts.id}"
-  http_method = "${aws_api_gateway_integration.ReactMood-integration.http_method}"
-  status_code = "${aws_api_gateway_method_response.ReactMood-200-response.status_code}"
+  http_method = "${aws_api_gateway_integration.CreateReactIntegration.http_method}"
+  status_code = "${aws_api_gateway_method_response.CreateReactMethodResponse200.status_code}"
   response_parameters = {
     "method.response.header.Access-Control-Allow-Origin" = "'*'"
   }
@@ -64,24 +64,24 @@ EOF
   }
 }
 
-resource "aws_api_gateway_method_response" "ReactMood-400-response" {
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
+resource "aws_api_gateway_method_response" "CreateReactMethodResponse400" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   resource_id = "${aws_api_gateway_resource.MoodReacts.id}"
-  http_method = "${aws_api_gateway_integration.ReactMood-integration.http_method}"
+  http_method = "${aws_api_gateway_integration.CreateReactIntegration.http_method}"
   status_code = "400"
   response_models = { "application/json" = "Error" }
   response_parameters = { "method.response.header.Access-Control-Allow-Origin" = true }
 }
 
-resource "aws_api_gateway_integration_response" "ReactMood-integration-response400" {
+resource "aws_api_gateway_integration_response" "CreateReactIntegrationResponse400" {
   depends_on = [
-    "aws_api_gateway_integration.ReactMood-integration",
-    "aws_api_gateway_method_response.ReactMood-400-response"
+    "aws_api_gateway_integration.CreateReactIntegration",
+    "aws_api_gateway_method_response.CreateReactMethodResponse400"
    ]
-  rest_api_id = "${aws_api_gateway_rest_api.moodindex-api.id}"
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   resource_id = "${aws_api_gateway_resource.MoodReacts.id}"
-  http_method = "${aws_api_gateway_integration.ReactMood-integration.http_method}"
-  status_code = "${aws_api_gateway_method_response.ReactMood-400-response.status_code}"
+  http_method = "${aws_api_gateway_integration.CreateReactIntegration.http_method}"
+  status_code = "${aws_api_gateway_method_response.CreateReactMethodResponse400.status_code}"
   response_parameters = { "method.response.header.Access-Control-Allow-Origin" = "'*'" }
   selection_pattern = ".*\"NotFound\".*"
 
