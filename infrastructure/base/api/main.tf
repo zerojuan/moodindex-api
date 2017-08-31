@@ -8,7 +8,8 @@ resource "aws_api_gateway_deployment" "MoodIndexDeployment" {
   depends_on = [
     "aws_api_gateway_method.ListMoods",
     "aws_api_gateway_method.CreateMood",
-    "aws_api_gateway_method.CreateReact"
+    "aws_api_gateway_method.CreateReact",
+    "aws_api_gateway_method.Login"
   ]
   rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   stage_name  = "v1"
@@ -48,6 +49,12 @@ resource "aws_api_gateway_authorizer" "MoodIndexAuth" {
   rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   authorizer_uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.region}:${var.account_id}:function:${var.authorizer_lambda}:${var.alias}/invocations"
   authorizer_credentials = "${aws_iam_role.lambda.arn}"
+}
+
+resource "aws_api_gateway_resource" "Login" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
+  parent_id = "${aws_api_gateway_rest_api.MoodIndexAPI.root_resource_id}"
+  path_part = "login"
 }
 
 // <ROOT>/moods
