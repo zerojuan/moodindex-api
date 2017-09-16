@@ -3,8 +3,8 @@ resource "aws_dynamodb_table" "access-policies-table" {
   name = "AccessPolicies"
   hash_key = "userType"
   range_key = "id"
-  read_capacity = "10"
-  write_capacity = "10"
+  read_capacity = "${var.read_capacity}"
+  write_capacity = "${var.write_capacity}"
   attribute {
     name = "userType"
     type = "S"
@@ -23,8 +23,8 @@ resource "aws_dynamodb_table" "access-policies-table" {
 resource "aws_dynamodb_table" "users-table" {
   name = "Users"
   hash_key = "id"
-  read_capacity = "10"
-  write_capacity = "10"
+  read_capacity = "${var.read_capacity}"
+  write_capacity = "${var.write_capacity}"
   attribute {
     name = "id"
     type = "S"
@@ -37,8 +37,8 @@ resource "aws_dynamodb_table" "users-table" {
   global_secondary_index {
     name = "usernameIndex"
     hash_key = "username"
-    write_capacity = "10"
-    read_capacity = "10"
+    write_capacity = "${var.write_capacity}"
+    read_capacity = "${var.read_capacity}"
     projection_type = "INCLUDE"
     non_key_attributes = [ "password" ]
   }
@@ -53,8 +53,8 @@ resource "aws_dynamodb_table" "moods-table" {
   name = "Moods"
   hash_key = "ownerId"
   range_key = "created"
-  read_capacity = "10"
-  write_capacity = "10"
+  read_capacity = "${var.read_capacity}"
+  write_capacity = "${var.write_capacity}"
   attribute {
     name = "ownerId"
     type = "S"
@@ -71,8 +71,8 @@ resource "aws_dynamodb_table" "moods-table" {
   global_secondary_index {
     name = "valueIndex"
     hash_key = "value"
-    write_capacity = "10"
-    read_capacity = "10"
+    write_capacity = "${var.write_capacity}"
+    read_capacity = "${var.read_capacity}"
     projection_type = "KEYS_ONLY"
   }
 
@@ -86,8 +86,8 @@ resource "aws_dynamodb_table" "reacts-table" {
   name = "Reacts"
   hash_key = "id"
   range_key = "ownerId"
-  read_capacity = "10"
-  write_capacity = "10"
+  read_capacity = "${var.read_capacity}"
+  write_capacity = "${var.write_capacity}"
   attribute {
     name = "id"
     type = "S"

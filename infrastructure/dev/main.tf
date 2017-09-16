@@ -10,7 +10,6 @@ provider "aws" {
   region = "${var.region}"
 }
 
-# TODO: use S3 to store state
 module "db-tables" {
   source = "../base/db"
   environment_name = "${var.apex_environment}"
