@@ -42,7 +42,7 @@ jobs:
           command: curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
       - run:
           name: Install node
-          command: apk add --update nodejs
+          command: apk add --update nodejs nodejs-npm
       - run:
           name: Install npm
           command: npm install
