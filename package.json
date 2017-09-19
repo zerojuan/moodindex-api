@@ -30,6 +30,7 @@
     "aws-sdk": "^2.117.0",
     "babel-polyfill": "^6.26.0",
     "bcryptjs": "^2.4.3",
+    "jest-cli": "^21.1.0",
     "jsonwebtoken": "^7.4.3",
     "restify-errors": "^5.0.0",
     "shortid": "^2.2.8",
