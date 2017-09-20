@@ -64,9 +64,9 @@ jobs:
           command: apex infra plan
       - run:
           name: Apex apply
-          command: apex infra apply -var 'deployment_description=$GIT_COMMIT_DESC'
+          command: apex infra apply
           environment: 
-            GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
+            TF_VAR_deployment_description: git log --format=oneline -n 1 $CIRCLE_SHA1
     #   - run:
     #       name: Create deployment
     #       command: aws apigateway create-deployment --rest-api-id 1234123412 --stage-name dev --description 'Second deployment to the dev stage'
