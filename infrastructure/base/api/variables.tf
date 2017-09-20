@@ -10,6 +10,10 @@ variable "request_parameters" {
   }
 }
 
+variable "deployment_description" {
+  default = "Auto deploy"
+}
+
 variable "alias" {
   default = "current"
 }

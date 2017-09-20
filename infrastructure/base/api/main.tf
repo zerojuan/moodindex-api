@@ -13,6 +13,7 @@ resource "aws_api_gateway_deployment" "MoodIndexDeployment" {
   ]
   rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   stage_name  = "v1"
+  description = "${var.deployment_description}"
 }
 
 output "rest_api_url" {

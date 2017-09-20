@@ -20,6 +20,7 @@ module "api-gateway" {
   environment_name = "${var.apex_environment}"
   region = "${var.region}"
   account_id = "${var.account_id}"
+  deployment_description="${var.deployment_description}"
 }
 
 output "api_url" {
