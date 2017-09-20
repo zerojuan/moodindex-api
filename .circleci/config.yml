@@ -37,6 +37,9 @@ jobs:
       - image: hashicorp/terraform:light
     steps:
       - checkout
+      - run: 
+          name: Get commit message
+          command: echo 'export TF_VAR_deployment_description=`git log --format=oneline -n 1 $CIRCLE_SHA1` >> $BASH_ENV
       - run:
           name: Install Apex
           command: curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
@@ -65,8 +68,6 @@ jobs:
       - run:
           name: Apex apply
           command: apex infra apply
-          environment: 
-            TF_VAR_deployment_description: git log --format=oneline -n 1 $CIRCLE_SHA1
     #   - run:
     #       name: Create deployment
     #       command: aws apigateway create-deployment --rest-api-id 1234123412 --stage-name dev --description 'Second deployment to the dev stage'
