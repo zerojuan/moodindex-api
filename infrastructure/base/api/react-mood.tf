@@ -83,6 +83,32 @@ resource "aws_api_gateway_integration_response" "CreateReactIntegrationResponse4
   http_method = "${aws_api_gateway_integration.CreateReactIntegration.http_method}"
   status_code = "${aws_api_gateway_method_response.CreateReactMethodResponse400.status_code}"
   response_parameters = { "method.response.header.Access-Control-Allow-Origin" = "'*'" }
+  selection_pattern = ".*\"BadRequest\".*"
+
+  response_templates = {
+    "application/json" = "${var.integration_error_template}"
+  }
+}
+
+resource "aws_api_gateway_method_response" "CreateReactMethodResponse404" {
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
+  resource_id = "${aws_api_gateway_resource.MoodReacts.id}"
+  http_method = "${aws_api_gateway_integration.CreateReactIntegration.http_method}"
+  status_code = "404"
+  response_models = { "application/json" = "Error" }
+  response_parameters = { "method.response.header.Access-Control-Allow-Origin" = true }
+}
+
+resource "aws_api_gateway_integration_response" "CreateReactIntegrationResponse404" {
+  depends_on = [
+    "aws_api_gateway_integration.CreateReactIntegration",
+    "aws_api_gateway_method_response.CreateReactMethodResponse404"
+   ]
+  rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
+  resource_id = "${aws_api_gateway_resource.MoodReacts.id}"
+  http_method = "${aws_api_gateway_integration.CreateReactIntegration.http_method}"
+  status_code = "${aws_api_gateway_method_response.CreateReactMethodResponse404.status_code}"
+  response_parameters = { "method.response.header.Access-Control-Allow-Origin" = "'*'" }
   selection_pattern = ".*\"NotFound\".*"
 
   response_templates = {

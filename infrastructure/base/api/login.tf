@@ -66,24 +66,24 @@ EOF
   }
 }
 
-resource "aws_api_gateway_method_response" "LoginMethodResponse400" {
+resource "aws_api_gateway_method_response" "LoginMethodResponse404" {
   rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   resource_id = "${aws_api_gateway_resource.Login.id}"
   http_method = "${aws_api_gateway_integration.LoginIntegration.http_method}"
-  status_code = "400"
+  status_code = "404"
   response_models = { "application/json" = "Error" }
   response_parameters = { "method.response.header.Access-Control-Allow-Origin" = true }
 }
 
-resource "aws_api_gateway_integration_response" "LoginIntegrationResponse400" {
+resource "aws_api_gateway_integration_response" "LoginIntegrationResponse404" {
   depends_on = [
     "aws_api_gateway_integration.LoginIntegration",
-    "aws_api_gateway_method_response.LoginMethodResponse400"
+    "aws_api_gateway_method_response.LoginMethodResponse404"
    ]
   rest_api_id = "${aws_api_gateway_rest_api.MoodIndexAPI.id}"
   resource_id = "${aws_api_gateway_resource.Login.id}"
   http_method = "${aws_api_gateway_integration.LoginIntegration.http_method}"
-  status_code = "${aws_api_gateway_method_response.LoginMethodResponse400.status_code}"
+  status_code = "${aws_api_gateway_method_response.LoginMethodResponse404.status_code}"
   response_parameters = { "method.response.header.Access-Control-Allow-Origin" = "'*'" }
   selection_pattern = ".*\"NotFound\".*"
 
