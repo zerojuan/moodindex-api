@@ -39,7 +39,7 @@ jobs:
       - checkout
       - run: 
           name: Get commit message
-          command: echo 'export TF_VAR_deployment_description=`git log --format=oneline -n 1 $CIRCLE_SHA1` >> $BASH_ENV
+          command: echo 'export TF_VAR_deployment_description=`git log --format=oneline -n 1 $CIRCLE_SHA1`' >> $BASH_ENV
       - run:
           name: Install Apex
           command: curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
