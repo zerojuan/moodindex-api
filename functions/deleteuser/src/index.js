@@ -8,6 +8,7 @@ export default function (e, context) {
       return context.succeed(result)
     })
     .catch((err) => {
+      console.log( JSON.stringify( err ) );
       return context.fail(JSON.stringify(err))
     })
 }
