@@ -29,6 +29,6 @@ Object {
     ],
     "Version": "2012-10-17",
   },
-  "principalId": "user",
+  "principalId": "1",
 }
 `;
