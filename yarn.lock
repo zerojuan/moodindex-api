@@ -947,10 +947,10 @@ aws-arn-parser@^1.0.0:
   resolved "https://registry.yarnpkg.com/aws-arn-parser/-/aws-arn-parser-1.0.1.tgz#1e7da799d3bd4cccaa8791df41320964508839e0"
   integrity sha512-qAL0ybefD8gBUw1QL8YWE84X8a4H53erhPknO+ArQnNGO0ziCoG59JF3Wpiygxu3OUeb3/BBe8UZw5nrXT/MLQ==
 
-aws-sdk@^2.117.0:
-  version "2.774.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.774.0.tgz#1d9512ae42f0cfb9b98d0d6e0d7df7634cf4e680"
-  integrity sha512-3a/fM1E3nCPwT4AVbysOWCMmsu/TOdJDD3urjywWE/qO1JShxRwLSdRLD1xRkacR9JcnydfkmdU0qk+VsM3nqg==
+aws-sdk@^2.814.0:
+  version "2.814.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.814.0.tgz#7a1c36006e0b5826f14bd2511b1d229ef6814bb0"
+  integrity sha512-empd1m/J/MAkL6d9OeRpmg9thobULu0wk4v8W3JToaxGi2TD7PIdvE6yliZKyOVAdJINhBWEBhxR4OUIHhcGbQ==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
